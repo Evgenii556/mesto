@@ -17,7 +17,7 @@ let element = elements.querySelector('.elements__element');
 let elementInfo = element.querySelector('.elements__image-info');
 let likeBtn = elementInfo.querySelector('.elements__like');
 
-let sumbitBtn = popapContainer.querySelector('.popap__submit-button')
+let sumbitBtn = popapContainer.querySelector('.popap__submit-button');
 let nameInput = popapForm.querySelector('.popap__name');
 let jobInput = popapForm.querySelector('.popap__info');
 
@@ -40,9 +40,6 @@ function handleFormSubmit(evt) {
   profileTitile.textContent = `${nameInput.value}`;
   profileSubtitle.textContent = `${jobInput.value}`;
   closePopapProfile();
-
-  
-  //profileTitile.textContent = 
 }
 
-sumbitBtn.addEventListener('click', handleFormSubmit)
+sumbitBtn.addEventListener('click', handleFormSubmit);
