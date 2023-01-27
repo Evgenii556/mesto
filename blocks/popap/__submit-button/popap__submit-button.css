@@ -1,0 +1,24 @@
+.popap__submit-button{
+  display: flex;
+  margin-top: 48px;
+  margin-left: 36px;
+  max-width: 358px;
+  height: 50px;
+  padding: 0px;
+  background-color: black;
+  border-radius: 2px;
+}
+
+.popap__submit-button:hover{
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px){
+  .popap__submit-button{
+    max-width: 238px;
+    height: 46px;
+    margin-top: 45px;
+    margin-left: 22px;
+
+  }
+}

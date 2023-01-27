@@ -1,0 +1,19 @@
+.popap__title{
+  display: flex;
+  color: #000000;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin-top: 34px;
+  margin-left: 36px;
+  margin-bottom: 0px;
+}
+
+@media screen and (max-width: 600px){
+  .popap__title{
+    font-size: 18px;
+    line-height: 22px;
+    margin-left: 22px;
+    margin-top: 25px;
+  }
+}
