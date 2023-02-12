@@ -76,6 +76,8 @@ let jobInputAdd = popupFormAdd.querySelector('.popup__input_type_job');
 
 
 
+
+
 function openPopupAdd() {
   popupAdd.classList.add("popup_opened");
 };
@@ -89,6 +91,25 @@ AddBtn.addEventListener('click', openPopupAdd);
 popupCloseAdd.addEventListener('click', closePopupAdd)
 
 
+const handleDeleteBtn = (evt) => {
+  evt.target.closest('.element').remove();
+}
+
+const handleLikeBtn = (evt) => {
+  evt.target.closest('.element__like').classList.toggle("element__like_active");
+};
+
+let popupImage = document.querySelector('.popup-image');
+let popupImageTitle = popupImage.querySelector('.popup-image__title');
+let popupImageImage = popupImage.querySelector('.popup-image__image');
+let popupImageCloseIcon = popupImage.querySelector('.popup-image__close-icon');
+
+const openPopupImage = (evt) => {
+  popupImage.classList.add("popup-image_opened");
+  popupImageImage.src = evt.target.closest('.element__image').src;
+  const imageInfoTitle = evt.target.nextElementSibling;
+  popupImageTitle.textContent = imageInfoTitle.querySelector('.element__title').textContent;
+};
 
 
 
@@ -96,8 +117,21 @@ let gotItemElement = (el) => {
   const elementElement = elementsTemplate.cloneNode(true);
   elementElement.querySelector('.element__title').textContent = el.name;
   elementElement.querySelector('.element__image').src = el.link;
+  const deleteCardBtn = elementElement.querySelector('.element__delete');
+  deleteCardBtn.addEventListener('click', handleDeleteBtn)
+  const likeCardBtn = elementElement.querySelector('.element__like');
+  likeCardBtn.addEventListener('click', handleLikeBtn);
+  const imageOpenBtn = elementElement.querySelector('.element__image');
+  imageOpenBtn.addEventListener('click', openPopupImage);
   return elementElement;
 };
+
+
+function closePopupImage() {
+  popupImage.classList.remove("popup-image_opened");
+}
+
+popupImageCloseIcon.addEventListener('click', closePopupImage);
 
 
 let renderCard = (el, elementsCard) => {
