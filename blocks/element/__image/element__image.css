@@ -1,7 +1,8 @@
 .element__image{
   display: flex;
-  width: 282px;
-  height: 282px;
+  min-width: 282px;
+  min-height: 282px;
   margin-top: 0px;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center;
 }
