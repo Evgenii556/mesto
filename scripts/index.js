@@ -69,6 +69,7 @@ editBtn.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInputEdit.value = profileTitile.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
+  enableValidation();
 });
 
 
@@ -162,8 +163,6 @@ document.addEventListener('keydown', function(evt) {
 });
 
 
-//----------------------------------------------------------------------
-// Валидация форм
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -224,12 +223,12 @@ const setEventListeners = (formElement) => {
 
 
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('popup__form'));
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
-    setEventListeners(fieldset);
+    setEventListeners(formElement);
   });
 };
 
