@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <link rel="icon" type="image" href="../mesto/images/site-icon.svg">
   <title>MESTO</title>
 </head>
 <body class="page">
@@ -28,9 +29,11 @@
       <div class="popup popup_type_edit">
           <div class="popup__container">
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form" name="profile-edit">
-              <input class="popup__input popup__input_type_name" name="profile-name" maxlength="40" type="text" placeholder="">
-              <input class="popup__input popup__input_type_job" name="profile-job" maxlength="40" type="text" placeholder="">
+            <form class="popup__form" name="profile-edit" novalidate>
+              <input class="popup__input popup__input_type_name" id="name-input" name="profile-name" minlength="2" maxlength="40" type="text" placeholder="Имя" required>
+              <span class="popup__input-error name-input-error"></span>
+              <input class="popup__input popup__input_type_job" id="job-input" name="profile-job" minlength="2" maxlength="40" type="text" placeholder="О себе" required>
+              <span class="popup__input-error job-input-error"></span>
               <button type="submit" class="popup__submit-button">Сохранить</button>
             </form>
             <button type="button" class="popup__close-icon"></button>
@@ -39,9 +42,11 @@
       <div class="popup popup_type_add">
           <div class="popup__container">
             <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form" name="profile-edit">
-              <input class="popup__input popup__input_type_name" name="profile-name" maxlength="" type="text" placeholder="Название">
-              <input class="popup__input popup__input_type_job" name="profile-job" maxlength="" type="text" placeholder="Ссылка на картинку">
+            <form class="popup__form" name="profile-edit" novalidate>
+              <input class="popup__input popup__input_type_name" id="title-input" name="profile-name" minlength="2" maxlength="" type="text" placeholder="Название" required>
+              <span class="popup__input-error title-input-error"></span>
+              <input class="popup__input popup__input_type_job" id="link-input" name="profile-job" minlength="2" maxlength="" type="url" placeholder="Ссылка на картинку" required>
+              <span class="popup__input-error link-input-error"></span>
               <button type="submit" class="popup__submit-button">Сохранить</button>
             </form>
             <button type="button" class="popup__close-icon"></button>

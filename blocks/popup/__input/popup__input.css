@@ -4,7 +4,7 @@
   display: flex;
   margin-top: 0px;
   margin-left: 0px;
-  margin-bottom: 25px;
+  margin-bottom: 0px;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -16,4 +16,8 @@
 .popup__input:focus{
   outline: 0;
   border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.popup__input:invalid{
+  border-bottom: 1px solid rgb(255, 0, 0);
 }
