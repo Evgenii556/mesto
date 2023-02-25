@@ -31,7 +31,7 @@ const initialCards = [
 
 
 const profile = document.querySelector('.profile');
-const editBtn = profile.querySelector('.profile__edit-button');
+const popupProfileOpenButton = profile.querySelector('.profile__edit-button');
 const profileTitile = profile.querySelector('.profile__title');
 const profileSubtitle = profile.querySelector('.profile__subtitle');
 const addBtn = profile.querySelector('.profile__button-add');
@@ -43,7 +43,7 @@ const nameInputEdit = popupFormEdit.querySelector('.popup__input_type_name');
 const jobInputEdit = popupFormEdit.querySelector('.popup__input_type_job');
 
 const closeButtons = document.querySelectorAll('.popup__close-icon');
-const popupOverlay = document.querySelectorAll('.popup');
+const popupOverlays = document.querySelectorAll('.popup');
 
 const popupAdd = document.querySelector('.popup_type_add');
 const popupFormAdd = popupAdd.querySelector('.popup__form');
@@ -58,6 +58,7 @@ const popupImageImage = popupImage.querySelector('.popup__image');
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', closeByEsc);
 };
 
 
@@ -65,11 +66,11 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
 };
 
-editBtn.addEventListener('click', function() {
+popupProfileOpenButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInputEdit.value = profileTitile.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
-  enableValidation();
+  sumbitBtnEdit.removeAttribute('disabled');
 });
 
 
@@ -97,16 +98,17 @@ const handleLikeBtn = (evt) => {
 };
 
 
-const gotItemElement = (el) => {
-  const elementElement = elementsTemplate.cloneNode(true);
-  elementElement.querySelector('.element__title').textContent = el.name;
-  elementElement.querySelector('.element__image').src = el.link;
-  elementElement.querySelector('.element__image').alt = el.name;
-  const deleteCardBtn = elementElement.querySelector('.element__delete');
+const createCard = (el) => {
+  const cardElement = elementsTemplate.cloneNode(true);
+  cardElement.querySelector('.element__title').textContent = el.name;
+  const cardElementImage = cardElement.querySelector('.element__image')
+  cardElementImage.src = el.link;
+  cardElementImage.alt = el.name;
+  const deleteCardBtn = cardElement.querySelector('.element__delete');
   deleteCardBtn.addEventListener('click', handleDeleteBtn)
-  const likeCardBtn = elementElement.querySelector('.element__like');
+  const likeCardBtn = cardElement.querySelector('.element__like');
   likeCardBtn.addEventListener('click', handleLikeBtn);
-  const imageOpenBtn = elementElement.querySelector('.element__image');
+  const imageOpenBtn = cardElement.querySelector('.element__image');
   imageOpenBtn.addEventListener('click', function(evt) {
     openPopup(popupImage);
     popupImageImage.src = evt.target.closest('.element__image').src;
@@ -114,12 +116,12 @@ const gotItemElement = (el) => {
     popupImageTitle.textContent = imageInfoTitle.querySelector('.element__title').textContent;
     popupImageImage.alt = imageInfoTitle.querySelector('.element__title').textContent;
   });
-  return elementElement;
+  return cardElement;
 };
 
 
 const renderCard = (el, elementsCard) => {
-  elementsCard.prepend(gotItemElement(el));
+  elementsCard.prepend(createCard(el));
 };
 
 initialCards.forEach(function(el) {
@@ -134,7 +136,8 @@ function handleFormSubmitAdd(evt) {
   };
   renderCard(el, elementsCard);
   closePopup(popupAdd);
-  evt.target.reset()
+  evt.target.reset();
+  sumbitBtnAdd.setAttribute('disabled', '');
 };
 
 popupFormAdd.addEventListener('submit', handleFormSubmitAdd);
@@ -146,18 +149,21 @@ closeButtons.forEach((button) => {
 });
 
 
-popupOverlay.forEach((popupOver) => {
+popupOverlays.forEach((popupOver) => {
   const popup = popupOver.closest('.popup');
-  popup.addEventListener('click', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
     if (evt.target === evt.currentTarget) {
       closePopup(popup);
     };
   });
 });
 
-document.addEventListener('keydown', function(evt) {
-  const popupIsOpen = document.querySelector('.popup_opened')
-  if (evt.key === 'Escape' && popupIsOpen) {
-    closePopup(popupIsOpen);
-  };
-});
+
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup); 
+    document.removeEventListener('keydown', closeByEsc);
+  }
+};
+

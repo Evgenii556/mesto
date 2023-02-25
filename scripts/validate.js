@@ -1,15 +1,23 @@
+const config = {
+  inputErrorClass: 'popup__input_type_error',
+  inputErrorActive: 'popup__input-error_active',
+  submitButtonSelector: '.popup__submit-button',
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input'
+};
+
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_type_error');
+  inputElement.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
+  errorElement.classList.add(config.inputErrorActive);
 };
 
 
 const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('popup__input-error_active');
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.inputErrorActive);
   errorElement.textContent = '';
 };
 
@@ -32,16 +40,16 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__submit-button_inactive');
+    buttonElement.setAttribute('disabled', '');
   } else {
-    buttonElement.classList.remove('popup__submit-button_inactive');
+    buttonElement.removeAttribute('disabled');
   }
 }; 
 
 
 const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__submit-button');
+  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
 
   toggleButtonState(inputList, buttonElement);
@@ -57,7 +65,7 @@ const setEventListeners = (formElement) => {
 
 
 const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', function (evt) {
       evt.preventDefault();
