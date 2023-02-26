@@ -34,20 +34,20 @@ const profile = document.querySelector('.profile');
 const popupProfileOpenButton = profile.querySelector('.profile__edit-button');
 const profileTitile = profile.querySelector('.profile__title');
 const profileSubtitle = profile.querySelector('.profile__subtitle');
-const addBtn = profile.querySelector('.profile__button-add');
+const popupCardAddButton = profile.querySelector('.profile__button-add');
 
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupFormEdit = popupEdit.querySelector('.popup__form');
-const sumbitBtnEdit = popupEdit.querySelector('.popup__submit-button');
+const popupEditSubmitButton = popupEdit.querySelector('.popup__submit-button');
 const nameInputEdit = popupFormEdit.querySelector('.popup__input_type_name');
 const jobInputEdit = popupFormEdit.querySelector('.popup__input_type_job');
 
-const closeButtons = document.querySelectorAll('.popup__close-icon');
+const buttonsClose = document.querySelectorAll('.popup__close-icon');
 const popupOverlays = document.querySelectorAll('.popup');
 
 const popupAdd = document.querySelector('.popup_type_add');
 const popupFormAdd = popupAdd.querySelector('.popup__form');
-const sumbitBtnAdd = popupAdd.querySelector('.popup__submit-button');
+const popupAddSubmitButton = popupAdd.querySelector('.popup__submit-button');
 const nameInputAdd = popupFormAdd.querySelector('.popup__input_type_name');
 const jobInputAdd = popupFormAdd.querySelector('.popup__input_type_job');
 
@@ -64,13 +64,14 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener('keydown', closeByEsc);
 };
 
 popupProfileOpenButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInputEdit.value = profileTitile.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
-  sumbitBtnEdit.removeAttribute('disabled');
+  popupEditSubmitButton.removeAttribute('disabled');
 });
 
 
@@ -84,7 +85,7 @@ function handleFormSubmit(evt) {
 popupFormEdit.addEventListener('submit', handleFormSubmit);
 
 
-addBtn.addEventListener('click', function() {
+popupCardAddButton.addEventListener('click', function() {
   openPopup(popupAdd);
 });
 
@@ -137,13 +138,13 @@ function handleFormSubmitAdd(evt) {
   renderCard(el, elementsCard);
   closePopup(popupAdd);
   evt.target.reset();
-  sumbitBtnAdd.setAttribute('disabled', '');
+  popupAddSubmitButton.setAttribute('disabled', '');
 };
 
 popupFormAdd.addEventListener('submit', handleFormSubmitAdd);
 
 
-closeButtons.forEach((button) => {
+buttonsClose.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
@@ -162,8 +163,7 @@ popupOverlays.forEach((popupOver) => {
 function closeByEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup); 
-    document.removeEventListener('keydown', closeByEsc);
+    closePopup(openedPopup);
   }
 };
 
