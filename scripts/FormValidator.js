@@ -25,16 +25,15 @@ export default class FormValidator {
       if (!inputElement.validity.valid) {
         this._showInputError(inputElement, inputElement.validationMessage);
       } else {
-        this._hideInputError(inputElement);
+          this._hideInputError(inputElement);
       }
     };
 
     _toggleButtonStage () {
       if (this._hasInvalidInput(this._inputList)) {
         this._submitButton.setAttribute("disabled", true);
-      } 
-      else {
-        this._submitButton.removeAttribute("disabled");
+      } else {
+          this._submitButton.removeAttribute("disabled");
       }
     };
 
