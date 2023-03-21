@@ -6,7 +6,7 @@ export default class Card {
     this._handleCardClick = handleCardClick
   };
   _getTemplate() {
-    const cardElement = document.querySelector('#item').content.querySelector('.element').cloneNode(true)
+    const cardElement = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true)
     return cardElement
   };
   generateCard() {

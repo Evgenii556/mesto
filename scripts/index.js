@@ -68,6 +68,14 @@ const popupImageTitle = popupImage.querySelector('.popup__capture');
 const popupImageImage = popupImage.querySelector('.popup__image');
 
 
+const validFormEditProfile = new FormValidator(config, popupFormEdit);
+
+validFormEditProfile.enableValidation();
+
+const validFormAddCard = new FormValidator(config, popupFormAdd);
+
+validFormAddCard.enableValidation();
+
 
 const handleCardClick = (element) => {
   openPopup(popupImage);
@@ -92,7 +100,8 @@ popupProfileOpenButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInputEdit.value = profileTitile.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
-  popupEditSubmitButton.removeAttribute('disabled');
+  const checkProfileForm = new FormValidator(config, popupFormEdit);
+  checkProfileForm.toggleButtonStage();
 });
 
 
@@ -108,6 +117,8 @@ popupFormEdit.addEventListener('submit', handleFormSubmit);
 
 popupCardAddButton.addEventListener('click', function() {
   openPopup(popupAdd);
+  const checkAddForm = new FormValidator(config, popupFormAdd);
+  checkAddForm.toggleButtonStage();
 });
 
 
@@ -161,13 +172,5 @@ function closeByEsc(evt) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   };
-
-  const validFormEditProfile = new FormValidator(config, popupFormEdit);
-
-  validFormEditProfile.enableValidation();
-
-  const validFormAddCard = new FormValidator(config, popupFormAdd);
-
-  validFormAddCard.enableValidation();
-
 };
+
