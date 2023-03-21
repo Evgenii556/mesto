@@ -76,15 +76,6 @@ const handleCardClick = (element) => {
   popupImageImage.alt = element.name;
 };
 
-const validFormEditProfile = new FormValidator(config, popupFormEdit);
-
-validFormEditProfile.enableValidation();
-
-const validFormAddCard = new FormValidator(config, popupFormAdd);
-
-validFormAddCard.enableValidation();
-
-
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -130,7 +121,7 @@ const renderCard = (item) => {
 };
 
 initialCards.forEach((item) => {
-  elementsCard.append(createCard(item))
+  renderCard(item);
 })
 
 
@@ -169,5 +160,14 @@ function closeByEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
-  }
+  };
+
+  const validFormEditProfile = new FormValidator(config, popupFormEdit);
+
+  validFormEditProfile.enableValidation();
+
+  const validFormAddCard = new FormValidator(config, popupFormAdd);
+
+  validFormAddCard.enableValidation();
+
 };
