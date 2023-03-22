@@ -100,8 +100,7 @@ popupProfileOpenButton.addEventListener('click', function() {
   openPopup(popupEdit);
   nameInputEdit.value = profileTitile.textContent;
   jobInputEdit.value = profileSubtitle.textContent;
-  const checkProfileForm = new FormValidator(config, popupFormEdit);
-  checkProfileForm.toggleButtonStage();
+  validFormEditProfile.toggleButtonStage();
 });
 
 
@@ -117,8 +116,7 @@ popupFormEdit.addEventListener('submit', handleFormSubmit);
 
 popupCardAddButton.addEventListener('click', function() {
   openPopup(popupAdd);
-  const checkAddForm = new FormValidator(config, popupFormAdd);
-  checkAddForm.toggleButtonStage();
+  validFormAddCard.toggleButtonStage();
 });
 
 
