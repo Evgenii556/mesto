@@ -143,7 +143,6 @@ function handleFormSubmitAdd(evt) {
   renderCard(el, elementsCard);
   closePopup(popupAdd);
   evt.target.reset();
-  popupAddSubmitButton.setAttribute('disabled', '');
 };
 
 popupFormAdd.addEventListener('submit', handleFormSubmitAdd);
