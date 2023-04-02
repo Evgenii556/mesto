@@ -47,6 +47,13 @@ export default class FormValidator {
     })
   };
 
+  resetValidateEror() {
+    this.toggleButtonStage();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
+
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
