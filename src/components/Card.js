@@ -3,6 +3,8 @@ export default class Card {
     this._cardData = cardData;
     this._template = templateSelector;
     this._handleCardClickFn = handleCardClick;
+    
+
   }
 
   _getTemplate() {
@@ -18,12 +20,11 @@ export default class Card {
   }
 
   _likeCard() {
-    this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    this._elementLike.classList.toggle('element__like_active'); 
   }
 
   _addEventListeners() {
     this._elementLike = this._element.querySelector('.element__like');
-
     this._element.querySelector('.element__delete').addEventListener('click', () => { this._deleteCard(); });
     this._elementLike.addEventListener('click', () => { this._likeCard(); });
     this._elementImage.addEventListener('click', () => { this._handleCardClickFn(this._cardData); });
