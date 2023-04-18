@@ -12,7 +12,9 @@
   </header>
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/image.jpg')%>" alt="Аватар" class="profile__avatar">
+        <button type="button" class="profile__avatar-button">
+          <img src="<%=require('./images/Avatarka.jpg')%>" alt="Аватар" class="profile__avatar">
+        </button>
         <div class="profile__info">
           <div class="profile__info-row">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -51,6 +53,26 @@
             <button type="button" class="popup__close-icon"></button>
           </div>
       </div>
+      <div class="popup popup_edit-avatar">
+        <div class="popup__container">
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form class="popup__form popup__form_type_avatar" name="avatar-edit" novalidate>
+            <input type="url" class="popup__input popup__input_type_avatar" id="avatar-input" name="avatar" placeholder="Ссылка на картинку" required>
+            <span class="popup__input-error avatar-input-error"></span>
+            <button type="submit" class="popup__submit-button" >Сохранить</button>
+          </form>
+          <button type="button" class="popup__close-icon"></button>
+        </div>
+      </div>
+      <div class="popup popup_confirm">
+        <div class="popup__container">
+          <h3 class="popup__title popup__title_type_confirm">Вы уверены?</h3>
+          <form class="popup__form popup__form_type_confirm" name="confirm">
+            <button type="submit" class="popup__submit-button">Да</button>
+          </form>
+          <button type="button" class="popup__close-icon"></button>
+        </div>
+      </div>
       <div class="popup popup_type_image">
         <div class="popup__image-container">
           <img alt="Фото" class="popup__image">
@@ -63,7 +85,10 @@
           <img class="element__image" alt="Фото">
           <div class="element__image-info">
             <h2 class="element__title"></h2>
-            <button type="button" class="element__like"></button>
+            <div class="element__like-container">
+              <button type="button" class="element__like"></button>
+              <span class="element__like-counter">0</span>
+            </div>
             <button type="button" class="element__delete"></button>
           </div>
         </div>
