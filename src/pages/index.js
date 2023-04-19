@@ -39,7 +39,7 @@ const api = new Api({
 
 let currentUserId = '';
 
-api.getDatssa()
+api.getData()
   .then((result) => {
     const [ apiUser, apiCards ] = result;
     userInfo.setUserInfo(apiUser);
