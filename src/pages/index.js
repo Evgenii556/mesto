@@ -45,13 +45,15 @@ api.getData()
     userInfo.setUserInfo(apiUser);
     userInfo.setUserAvatar(apiUser);
     currentUserId = apiUser._id;
-    section.renderItems(apiCards);
+    apiCards.forEach(items => {
+      section.addItems(createCard(items));
+    })
   })
   .catch((err) => {
     console.log(err);
   });
 
-const section = new Section (addCard, '.elements');
+const section = new Section ('.elements');
 
 
 const userInfo = new UserInfo({name: '.profile__title', info: '.profile__subtitle', avatar: '.profile__avatar'});
@@ -77,13 +79,15 @@ function handleFormSubmitProfile(inputData) {
     });
 }
 
-popupProfileOpenButton.addEventListener('click', function () {
+function openProfilePopup() {
   const {name, info} = userInfo.getUserInfo();
   nameInputEdit.value = name;
   jobInputEdit.value = info;
   validFormEditProfile.resetValidateEror();
   popupFormEditProfile.open();
-});
+};
+
+popupProfileOpenButton.addEventListener('click', openProfilePopup);
 
 popupFormEditProfile.setEventListeners();
 
@@ -113,11 +117,13 @@ function handleFormSubmitAvatar(inputData) {
     });
 }
 
-buttonEditAvatar.addEventListener('click', function () {
+function openAvatarPopup(){
   const data = userInfo.getUserAvatar();
   validFormAvatar.resetValidateEror();
   popupFormEditAvatar.open();
-});
+}
+
+buttonEditAvatar.addEventListener('click', openAvatarPopup);
 
 
 
