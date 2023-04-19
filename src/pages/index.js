@@ -36,6 +36,7 @@ const api = new Api({
   }
 });
 
+
 let currentUserId = '';
 
 api.getData()
