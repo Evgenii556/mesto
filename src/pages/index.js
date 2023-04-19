@@ -72,7 +72,7 @@ function handleFormSubmitProfile(inputData) {
       console.log(err);
     })
     .finally(() => {
-      popupFormEditAvatar.showSave(false);
+      popupFormEditProfile.showSave(false);
     });
 }
 
