@@ -65,7 +65,7 @@ function handleFormSubmitProfile(inputData) {
   popupFormEditProfile.showSave(true);
   api.editUserInfo(inputData.name, inputData.job)
     .then((result) => {
-      userInfo.setUserInfo({name: result.name, info: result.info});
+      userInfo.setUserInfo({name: result.name, about: result.about});
       popupFormEditProfile.close();
     })
     .catch((err) => {
@@ -133,9 +133,7 @@ validFormAddCard.enableValidation();
 function handleFormSubmitCard(inputData) {
   const data = {name: inputData.title, link: inputData.image};
   popupFormAddCard.showSave(true);
-
   api.addCard(data)
-
     .then((result) => {
       addCard(result);
       popupFormAddCard.close();
@@ -150,6 +148,7 @@ function handleFormSubmitCard(inputData) {
 
 popupCardAddButton.addEventListener('click', () => {
   validFormAddCard.resetValidateEror();
+  popupFormAddCard.showSave(false)
   popupFormAddCard.open()
 });
 

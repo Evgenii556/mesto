@@ -11,15 +11,13 @@ export default class UserInfo {
     getUserInfo() {
       this._nameProfile = this._name.textContent;
       this._infoProfile = this._info.textContent;
-      console.log(this._nameProfile);
-      console.log(this._infoProfile);
       return {name: this._nameProfile, info: this._infoProfile}
     
     }
   
-    setUserInfo({name, info}) {
+    setUserInfo({name, about}) {
       this._name.textContent = name;
-      this._info.textContent = info;
+      this._info.textContent = about;
     }
 
     getUserAvatar() {
