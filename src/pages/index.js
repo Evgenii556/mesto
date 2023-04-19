@@ -113,11 +113,8 @@ function handleFormSubmitAvatar(inputData) {
 }
 
 buttonEditAvatar.addEventListener('click', function () {
-
   const data = userInfo.getUserAvatar();
-
   validFormAvatar.resetValidateEror();
-
   popupFormEditAvatar.open();
 });
 
@@ -176,7 +173,6 @@ function handleDeleteCard(idCard, thisCard) {
 
 function deleteThisCard(idCard, thisCard) {
   popupConfirm.showSave(true);
-
   api.deleteCard(idCard)
     .then(result => {
       thisCard._deleteCard();

@@ -1,8 +1,8 @@
 .profile__avatar-button {
+  position: relative;
   border-radius: 50%;
   line-height: 0;
   padding: 0;
-  position: relative;
   border: none;
   width: 120px;
   height: 120px;
@@ -27,7 +27,7 @@
 }
 
 .profile__avatar-button:hover::before {
-  background-color: #000;
+  background-color: black;
   opacity: 0.8;
 }
 
